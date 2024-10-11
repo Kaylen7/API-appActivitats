@@ -32,5 +32,17 @@ class ExportImportController extends Controller
         } catch(\Exception $e){
             return response()->json(['error' => $e->getMessage()], 500);
         }
-    } 
+    }
+
+    public function exportarJson(){
+        $data = [
+            'activitats' => $activitats = Activitat::with('asistencia_usuari')->get()
+        ];
+
+        $jsonData = json_encode($data, JSON_PRETTY_PRINT);
+
+        return response($jsonData, 200)
+        ->header('Content-Type', 'application/json')
+        ->header('Content-Disposition', 'attachment; filename="activitats.json"');
+    }
 }
