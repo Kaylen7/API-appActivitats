@@ -16,8 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nom', 50);
             $table->string('cognom1', 50);
-            $table->string('cognom2', 50);
-            $table->date('aniversari');
+            $table->string('cognom2', 50)->nullable();
+            $table->date('aniversari')->nullable();
             $table->string('email');
         });
     }

@@ -19,7 +19,7 @@ class UsuariFactory extends Factory
         return [
             'nom' => fake()->name(),
             'cognom1' => fake()->lastName(),
-            'cognom2' => fake()->lastName(),
+            'cognom2' => rand(0,1) === 0 ? NULL : fake()->lastName(),
             'aniversari' => fake()->date(),
             'email' => fake()->unique()->safeEmail
         ];
