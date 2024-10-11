@@ -16,7 +16,6 @@ return new class extends Migration
             $table->timestamps();
             $table->string('nom');
             $table->longText('descripcio')->nullable();
-            $table->dateTime('data_creacio')->useCurrent();
             $table->dateTime('data_esdeveniment');
             $table->unsignedBigInteger('creat_per')->nullable();
             $table->integer('capacitat_maxima')->nullable();
