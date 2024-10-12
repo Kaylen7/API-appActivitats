@@ -5,31 +5,60 @@ Prova Backend Hackató Saló d'Ocupació oct. 2024.
 La lògica d'aquesta API contempla que la persona que hi accedeix és l'administradora i té accés a la creació, edició, eliminació i visualització de les dades de les usuàries i de les activitats sense cap mena de restricció.  
 
 ## ⚙️ Requisits
-- php 8.3.12  
-- servidor mysql local  
+- PHP >= 8.1  
+- MySQL
+- Composer
+- git
 
 >[!CAUTION]
 > Tinc pendent empaquetar l'API a un contenidor de docker. Mentrestant, és probable que l'API falli per incompatibilitats amb versions diferents de programari o perquè no pugui connectar-se de forma adequada a la base de dades... 🤡 Espero que no.  
 
-## 🧱 Instalació  
+## 🧱 Instal·lació  
 1. Clona el repositori i accedeix a la carpeta API-appActivitats.  
-`git clone git@github.com:Kaylen7/API-appActivitats.git`  
+- `git clone git@github.com:Kaylen7/API-appActivitats.git`  
+- `cd API-appActivitats`  
 
-2. Activa el servidor de `mysql` al teu ordinador i tingues present el nom d'usuari, la contrassenya per connectar-t'hi i el port (si és diferent del que s'assigna per defecte, 3306).  
+2. Instal·la les dependencies de PHP:  
+`composer install`  
 
-3. Canvia el nom de l'arxiu `.env.example` a `.env` i omple les dades per connectar a la base de dades (l.22 a 27).  
-- En principi, pots deixar els valors que hi ha per defecte a `DB_HOST`, `DB_PORT` i `DB_DATABASE`.
-- `DB_USERNAME`: nom_usuari (sense cometes).  
-- `DB_PASSWORD`: contrassenya (sense cometes).  
+3. Copia `.env.example` amb el nom `.env` i omple les dades per connectar a la base de dades (l.22 a 27).  
+- `cp .env.example .env`  
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=appActivitats
+DB_USERNAME=nom_usuari
+DB_PASSWORD=constrassenya
+```  
 
 >[!TIP]
 > Assegura't que tens l'arxiu `.gitignore` amb `.env`.  
 
-4. Fes servir `php artisan serve` per aixecar el servidor.  
-5. Accedeix als endpoints amb `curl` o una eina com [Postman](https://www.postman.com/). 
+4. Genera la clau d'encriptació per a l'aplicació per evitar problemes amb Laravel (🤞).  
+`php artisan key:generate`  
+
+5. Fes les migracions de la base de dades i afegeix dades de mostra amb `--seed`.  
+`php artisan migrate --seed`  
+
+## 🏎️ Activar el servidor
+
+1. Activa el servidor de MySQL al teu ordinador i tingues present el nom d'usuari, la contrassenya per connectar-t'hi i el port. Han de coincidir amb les dades de l'arxiu `.env`.  
+
+**MacOS**
+- Amb Homebrew: `brew services start mysql`  
+- Sense: `mysql.server start`  
+
+**Windows**
+- `net start mysql`  
+
+2. Posa en marxa el servidor de laravel.  
+`php artisan serve`  
+
+3. L'API hauria de ser accessible a `http://localhost:8000/`. 
 
 ## 🤝 API Endpoints  
-Pots trobar un exemple d'ús dels endpoints a la [documentació de l'API](https://www.postman.com/kaylen/appactivitats/overview) a Postman.  
+Pots trobar la llista d'endpoints a la [documentació de l'API](https://www.postman.com/kaylen/appactivitats/overview) a Postman.  
 
 ## Importació i exportació de JSON  
 L'API permet importar i exportar arxius en format JSON a les rutes:  
