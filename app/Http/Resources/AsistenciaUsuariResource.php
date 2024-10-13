@@ -19,7 +19,7 @@ class AsistenciaUsuariResource extends JsonResource
     {
         return [
             "nom" => $this->pivot->nom_activitat,
-            "id" => $this->pivot->id_activitat
+            "id" => $this->pivot->activitat_id
         ];
     }
 }
