@@ -21,8 +21,15 @@ class AsistenciaUsuariActivitatFactory extends Factory
 
     public function definition(): array
     {
-        $usuari = DB::table('usuaris')->inRandomOrder()->first();
-        $activitat = DB::table('activitats')->inRandomOrder()->first();
+        do {
+            $usuari = DB::table('usuaris')->inRandomOrder()->first();
+            $activitat = DB::table('activitats')->inRandomOrder()->first();
+
+            $exists = DB::table('asistencia_usuari_activitats')
+                ->where('usuari_id', $usuari->id)
+                ->where('activitat_id', $activitat->id)
+                ->exists();           
+        } while ($exists);
 
         return [
             'usuari_id' => $usuari->id,
