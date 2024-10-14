@@ -21,7 +21,16 @@ La lògica d'aquesta API contempla que la persona que hi accedeix és l'administ
 2. Instal·la les dependencies de PHP:  
 `composer install`  
 
-3. Copia `.env.example` amb el nom `.env` i omple les dades per connectar a la base de dades (l.22 a 27).  
+3. Activa el servidor de MySQL al teu ordinador i tingues present el nom d'usuari, la contrassenya per connectar-t'hi i el port. Han de coincidir amb les dades de l'arxiu `.env`.  
+
+**MacOS**
+- Amb Homebrew: `brew services start mysql`  
+- Sense: `mysql.server start`  
+
+**Windows**
+- `net start mysql`  
+
+4. Copia `.env.example` amb el nom `.env` i omple les dades per connectar a la base de dades (l.22 a 27).  
 - `cp .env.example .env`  
 ```
 DB_CONNECTION=mysql
@@ -35,22 +44,15 @@ DB_PASSWORD=constrassenya
 >[!TIP]
 > Assegura't que tens l'arxiu `.gitignore` amb `.env`.  
 
-4. Genera la clau d'encriptació per a l'aplicació per evitar problemes amb Laravel (🤞).  
+5. Genera la clau d'encriptació per a l'aplicació per evitar problemes amb Laravel (🤞).  
 `php artisan key:generate`  
 
-5. Fes les migracions de la base de dades i afegeix dades de mostra amb `--seed`.  
+6. Fes les migracions de la base de dades i afegeix dades de mostra amb `--seed`.  
 `php artisan migrate --seed`  
 
 ## 🏎️ Activar el servidor
 
-1. Activa el servidor de MySQL al teu ordinador i tingues present el nom d'usuari, la contrassenya per connectar-t'hi i el port. Han de coincidir amb les dades de l'arxiu `.env`.  
-
-**MacOS**
-- Amb Homebrew: `brew services start mysql`  
-- Sense: `mysql.server start`  
-
-**Windows**
-- `net start mysql`  
+1. Activa el servidor MYSQL si no el tens activat.  
 
 2. Posa en marxa el servidor de laravel.  
 `php artisan serve`  
