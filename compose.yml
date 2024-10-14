@@ -1,0 +1,54 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appActivitats
+    ports:
+      - "9000:9000"  # Expose PHP-FPM port
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=appActivitats
+      - DB_USERNAME=admin
+      - DB_PASSWORD=contrassenya
+    depends_on:
+      - db
+    volumes:
+      - .:/var/www/html
+    networks:
+      - laravel
+  
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - laravel
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_DATABASE: appActivitats
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: contrassenya
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - laravel
+    ports:
+      - "3306:3306"
+
+volumes:
+  db_data:
+
+networks:
+  laravel:
