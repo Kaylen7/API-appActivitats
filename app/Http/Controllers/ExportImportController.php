@@ -21,11 +21,11 @@ class ExportImportController extends Controller
         try {
             if($request->tipus === 'usuaris'){
                 foreach($data['usuaris'] as $dataUsuari){
-                    Usuari::create();
+                    Usuari::create($dataUsuari);
                 }
             }elseif($request->tipus === 'activitats'){
                 foreach($data['activitats'] as $dataActivitat){
-                    Activitat::create();
+                    Activitat::create($dataActivitat);
                 }
             }
             return response()->json(['message' => "JSON importat correctament"], 200);
