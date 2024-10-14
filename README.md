@@ -4,7 +4,7 @@ Prova Backend Hackató Saló d'Ocupació oct. 2024.
 ## 🖼️ Context  
 La lògica d'aquesta API contempla que la persona que hi accedeix és l'administradora i té accés a la creació, edició, eliminació i visualització de les dades de les usuàries i de les activitats sense cap mena de restricció.  
 
-## ⚙️ Dependències {#dependencies}  
+## ⚙️ Dependències 
 - PHP >= 8.1  
 - MySQL  
 - Composer  
@@ -16,10 +16,10 @@ La lògica d'aquesta API contempla que la persona que hi accedeix és l'administ
 - `cd API-appActivitats`  
 
 2. Tria la teva pròpia aventura: 
-- [Fer servir Docker](#docker-install)  
-- [Instal·lar manualment](#manual-install)    
+- [Fer servir Docker](#-docker)  
+- [Instal·lar manualment](#-installació-manual)    
 
-### 🐳 Docker {#docker-install}  
+### 🐳 Docker 
 >[!INFO]  
 > Evita conflictes amb dependències fent servir un contenidor de docker. Primerament, necessitaràs tenir instal·lat [Docker](https://www.docker.com/).  
 
@@ -40,9 +40,9 @@ DB_PASSWORD=contrassenya
 
 3. Comprova que funcionen correctament navegant a `localhost:8000`. Hauries de veure la pàgina principal de Laravel.  
 
-4. Ja pots fer servir els [endpoints](#api-endpoints) de l'API! 🎉
+4. Ja pots fer servir els [endpoints](#-api-endpoints) de l'API! 🎉
 
-### 🧑‍🚒 Instal·lació manual {#manual-install}  
+### 🧑‍🚒 Instal·lació manual  
 
 1. Instal·la les dependencies de PHP:  
 - `composer install`  
@@ -85,7 +85,7 @@ DB_PASSWORD=constrassenya
 
 3. L'API hauria de ser accessible a `http://localhost:8000/`. 
 
-## 🤝 API Endpoints {#api-endpoints}  
+## 🤝 API Endpoints
 Pots trobar la llista d'endpoints a la [documentació de l'API](https://www.postman.com/kaylen/appactivitats/overview) a Postman.  
 
 ### Importació i exportació de JSON  
